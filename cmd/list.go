@@ -26,20 +26,42 @@ var listCmd = &cobra.Command{
 			return
 		}
 
-    for _, pid := range pids {          // now we are looping over this inside we are calling the getprocessinfo from the process.go
-	info, err := linux.GetProcessInfo(pid)  // this is the map 
+fmt.Println()   // you all can see pretty printing is started
+fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")  
+fmt.Println(" PROCX   Running Processes")
+fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
+fmt.Printf(
+	" %-8s %-20s %-12s %-14s %s\n",
+	"PID",
+	"NAME",
+	"STATE",
+	"RAM",
+	"THREADS",
+)
+
+fmt.Println()
+
+for _, pid := range pids {
+	info, err := linux.GetProcessInfo(pid)
 	if err != nil {
 		continue
 	}
 
-	fmt.Printf("%-8s %-20s %-20s %-12s %s\n",
+	fmt.Printf(
+		" %-8s %-20s %-12s %-14s %s\n",
 		info.PID,
 		info.Name,
 		info.State,
 		info.Memory,
 		info.Threads,
-	)   // Now we will print all the info we have asked 
+	)
 }
+
+fmt.Println()
+fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
+
 	},
 }
 
