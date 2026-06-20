@@ -23,6 +23,31 @@ var diagnoseCmd = &cobra.Command{
 			return
 		}
 
+
+		if len(
+	diagnosis.Warnings,
+) > 0 {
+
+	fmt.Println()
+
+	fmt.Println(
+	" WARNINGS",
+	)
+
+	fmt.Println()
+
+	for _, w := range diagnosis.Warnings {
+
+		fmt.Println(
+			" •",
+			w,
+		)
+	}
+
+	fmt.Println()
+}
+
+
 		fmt.Println()
 		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 		fmt.Println(" PROCX   Process Diagnosis")

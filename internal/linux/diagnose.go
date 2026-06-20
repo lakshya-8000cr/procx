@@ -2,6 +2,8 @@ package linux
 
 import (
 	"os"
+
+	"strings"
 )
 
 type Diagnosis struct {
@@ -82,5 +84,43 @@ func Diagnose(
 		Threads: threads,
 	}
 
+	BuildWarnings(d)
+
 	return d, nil
+}
+
+
+func BuildWarnings(
+	d *Diagnosis,
+) {
+
+	if strings.Contains(
+		d.Process.State,
+		"Z",
+	) {
+
+		d.Warnings = append(
+			d.Warnings,
+
+			"Zombie process detected",
+		)
+	}
+
+	if d.FDs > 100 {
+
+		d.Warnings = append(
+			d.Warnings,
+
+			"High file descriptor usage",
+		)
+	}
+
+	if d.Threads > 50 {
+
+		d.Warnings = append(
+			d.Warnings,
+
+			"High thread count",
+		)
+	}
 }
