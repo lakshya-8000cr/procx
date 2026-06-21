@@ -5,6 +5,7 @@ import (
 
 	"procx/internal/linux"
 
+	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
@@ -22,28 +23,56 @@ var portCmd = &cobra.Command{
 			return
 		}
 
+		cyan := color.New(color.FgCyan, color.Bold)
+		white := color.New(color.FgWhite, color.Bold)
+		dim := color.New(color.FgWhite, color.Faint)
+		green := color.New(color.FgGreen, color.Bold)
+		red := color.New(color.FgRed, color.Bold)
+		yellow := color.New(color.FgYellow)
+		border := color.New(color.FgCyan, color.Faint)
+
 		fmt.Println()
-		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-		fmt.Println(" PROCX   Port Inspector")
-		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+		border.Println("  ┌─────────────────────────────────────────────┐")
+		fmt.Print("  │  ")
+		cyan.Print("⬡  PROCX")
+		dim.Print("  ·  ")
+		white.Print("Port Inspector")
+		dim.Println("                          │")
+		border.Println("  └─────────────────────────────────────────────┘")
 		fmt.Println()
 
 		if info == nil {
-			fmt.Printf(" %-10s %s\n", "Port", port)
+			fmt.Print("  ")
+			dim.Printf("%-10s", "port")
+			yellow.Println(":" + port)
 			fmt.Println()
-			fmt.Println(" No process found using this port")
+			fmt.Print("  ")
+			red.Print("✕  ")
+			dim.Println("no process found using this port")
 			fmt.Println()
-			fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+			border.Println("  ─────────────────────────────────────────────")
+			fmt.Println()
 			return
 		}
 
-		fmt.Printf(" %-10s %s\n", "Port", info.Port)
-		fmt.Printf(" %-10s %s\n", "Process", info.Command)
-		fmt.Printf(" %-10s %s\n", "PID", info.PID)
-		fmt.Printf(" %-10s %s\n", "User", info.User)
+		fmt.Print("  ")
+		dim.Printf("%-10s", "port")
+		yellow.Println(":" + info.Port)
+
+		fmt.Print("  ")
+		dim.Printf("%-10s", "process")
+		white.Println(info.Command)
+
+		fmt.Print("  ")
+		dim.Printf("%-10s", "pid")
+		cyan.Println(info.PID)
+
+		fmt.Print("  ")
+		dim.Printf("%-10s", "user")
+		green.Println(info.User)
 
 		fmt.Println()
-		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+		border.Println("  ─────────────────────────────────────────────")
 		fmt.Println()
 	},
 }
