@@ -12,6 +12,20 @@ Instead of treating Linux as a collection of commands, this project explores Lin
 
 ---
 
+# Installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/lakshya-8000cr/procx/main/install.sh | bash
+```
+
+Verify in new terminal:
+
+```bash
+procx list
+```
+
+---
+
 # Why I Built This
 
 When an application crashes, we usually jump between multiple commands.
@@ -29,9 +43,9 @@ journalctl
 
 kill -15 <pid>
 ```
+---
 
 Each command provides only a small piece of information.
----
 
 # Features
 
@@ -40,6 +54,8 @@ Each command provides only a small piece of information.
 ```bash
 procx list
 ```
+
+<img width="768" height="930" alt="image" src="https://github.com/user-attachments/assets/e9d4d492-6413-44ea-93e3-20d98b2d8486" />
 
 Displays:
 
@@ -56,6 +72,9 @@ Displays:
 ```bash
 procx diagnose <pid>
 ```
+
+<img width="585" height="512" alt="image" src="https://github.com/user-attachments/assets/62a6c375-4575-43dc-8efb-54594bbb0ea8" />
+
 
 Provides a summarized diagnosis for a process.
 
@@ -96,7 +115,13 @@ Displays:
 procx env <pid>
 ```
 
-Displays important environment variables associated with a process.
+Displays important environment variables associated with a process ,
+use sudo in case of permission denied.
+
+
+<img width="1097" height="523" alt="image" src="https://github.com/user-attachments/assets/258d08ed-89d1-4df0-b9dc-910ab2dd6ddd" />
+
+
 
 To display all variables:
 
