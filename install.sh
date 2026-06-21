@@ -2,7 +2,6 @@
 
 set -e
 
-//
 echo "Installing Procx..."
 
 # url for reaching the realese
