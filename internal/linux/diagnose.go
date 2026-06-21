@@ -17,6 +17,13 @@ type Diagnosis struct {
 	MaxFD string
 
 	Warnings []string
+
+	Executable  string
+
+    WorkingDir  string
+
+    CommandLine string
+
 }
 
 func GetFDCount(
@@ -75,6 +82,10 @@ func Diagnose(
 		pid,
 	)
 
+	exe, _ := GetExecutable(pid)
+cwd, _ := GetWorkingDir(pid)
+cmd, _ := GetCommandLine(pid)
+
 	d := &Diagnosis{
 
 		Process: *process,
@@ -82,6 +93,10 @@ func Diagnose(
 		FDs: fds,
 
 		Threads: threads,
+
+		Executable:  exe,
+WorkingDir:  cwd,
+CommandLine: cmd,
 	}
 
 	BuildWarnings(d)
@@ -123,4 +138,26 @@ func BuildWarnings(
 			"High thread count",
 		)
 	}
+}
+
+
+
+
+ 
+func GetExecutable(pid string) (string, error) {
+	return os.Readlink("/proc/" + pid + "/exe")  // executable path like /usr/bin/node
+}
+
+func GetWorkingDir(pid string) (string, error) {
+	return os.Readlink("/proc/" + pid + "/cwd")  // current working dir /home/lakshya/forge/backend
+}
+
+func GetCommandLine(pid string) (string, error) { 
+	data, err := os.ReadFile("/proc/" + pid + "/cmdline")  // node server.js
+	if err != nil {
+		return "", err
+	}
+
+	cmd := strings.ReplaceAll(string(data), "\x00", " ")
+	return strings.TrimSpace(cmd), nil
 }

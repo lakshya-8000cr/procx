@@ -60,6 +60,9 @@ var diagnoseCmd = &cobra.Command{
 		fmt.Printf(" %-12s %s\n", "RAM", diagnosis.Process.Memory)
 		fmt.Printf(" %-12s %d\n", "Threads", diagnosis.Threads)
 		fmt.Printf(" %-12s %d\n", "FDs", diagnosis.FDs)
+		fmt.Printf(" %-12s %s\n", "Executable", diagnosis.Executable)
+fmt.Printf(" %-12s %s\n", "Directory", diagnosis.WorkingDir)
+fmt.Printf(" %-12s %s\n", "Command", diagnosis.CommandLine)
 
 		fmt.Println()
 		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
