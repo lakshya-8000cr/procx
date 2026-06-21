@@ -56,6 +56,14 @@ var diagnoseCmd = &cobra.Command{
 
 		fmt.Printf(" %-12s %s\n", "Process", diagnosis.Process.Name)
 		fmt.Printf(" %-12s %s\n", "PID", diagnosis.Process.PID)
+		fmt.Printf(
+
+	" %-12s %s\n",
+
+	"Uptime",
+
+	diagnosis.Uptime,
+)
 		fmt.Printf(" %-12s %s\n", "State", diagnosis.Process.State)
 		fmt.Printf(" %-12s %s\n", "RAM", diagnosis.Process.Memory)
 		fmt.Printf(" %-12s %d\n", "Threads", diagnosis.Threads)

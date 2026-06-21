@@ -1,6 +1,8 @@
 package linux
 
 import (
+	"os/exec"
+
 	"os"
 
 	"strings"
@@ -24,6 +26,7 @@ type Diagnosis struct {
 
     CommandLine string
 
+    Uptime string
 }
 
 func GetFDCount(
@@ -85,6 +88,7 @@ func Diagnose(
 	exe, _ := GetExecutable(pid)
 cwd, _ := GetWorkingDir(pid)
 cmd, _ := GetCommandLine(pid)
+uptime := GetUptime(pid)
 
 	d := &Diagnosis{
 
@@ -97,6 +101,7 @@ cmd, _ := GetCommandLine(pid)
 		Executable:  exe,
 WorkingDir:  cwd,
 CommandLine: cmd,
+		Uptime: uptime,
 	}
 
 	BuildWarnings(d)
@@ -160,4 +165,35 @@ func GetCommandLine(pid string) (string, error) {
 
 	cmd := strings.ReplaceAll(string(data), "\x00", " ")
 	return strings.TrimSpace(cmd), nil
+}
+
+
+//getuptime
+func GetUptime(
+	pid string,
+) string {
+
+	out, err := exec.Command(
+
+		"ps",
+
+		"-p",
+
+		pid,
+
+		"-o",
+
+		"etime=",
+
+	).Output()
+
+	if err != nil {
+
+		return "unknown"
+	}
+
+	return strings.TrimSpace(
+
+		string(out),
+	)
 }
