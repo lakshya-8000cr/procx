@@ -130,6 +130,29 @@ procx env <pid> --full
 ```
 ---
 
+## Zombie Reaper
+
+```bash
+procx reaper
+```
+
+Detects zombie processes running on the system.
+
+Displays:
+
+- Zombie PID
+- Parent PID
+- Process name
+- Process state
+
+To attempt cleanup:
+
+```bash
+procx reaper --fix
+```
+
+> Note: Zombie processes cannot be killed directly. Procx attempts to terminate their parent process using `SIGTERM`.
+
 # Architecture
 
 ```text
