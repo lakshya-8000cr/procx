@@ -9,6 +9,7 @@ import (
 
 type ProcessInfo struct {
 	PID     string
+	PPID    string
 	Name    string
 	State   string
 	Memory  string
