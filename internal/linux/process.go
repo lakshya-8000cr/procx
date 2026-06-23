@@ -84,6 +84,10 @@ func GetProcessInfo(pid string) (*ProcessInfo, error) {   // now furthere we goi
 		if strings.HasPrefix(line, "Threads:") {
 			info.Threads = strings.TrimSpace(strings.TrimPrefix(line, "Threads:"))
 		}
+
+		if strings.HasPrefix(line, "PPid:") {  // parent id of the zombie prcess will be sent 
+	info.PPID = strings.TrimSpace(strings.TrimPrefix(line, "PPid:"))
+}
 	}
 
 	return info, nil
