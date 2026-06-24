@@ -10,7 +10,7 @@ echo ""
 
 
 # url for reaching the realese
-URL="https://github.com/lakshya-8000cr/procx/releases/download/v1.0.0/procx"
+URL="https://github.com/lakshya-8000cr/procx/releases/download/v1.0.1/procx"
 
 echo "Downloading Procx..."
 sudo curl -fsSL "$URL" -o /usr/local/bin/procx  #download the file from url  then sve it to location /usr/local/bin/... okkk
