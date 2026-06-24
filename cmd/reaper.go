@@ -117,7 +117,7 @@ func printRBorder(kind string, w int) {
 func printRHeader(w int) {
 	_ = w
 	color.New(color.Faint).Print("  │  ")
-	color.New(color.BgRed, color.FgWhite, color.Bold).Print(" PROCX ")
+	color.New(color.BgRed, color.FgWhite, color.Bold).Print(" PROCXY ")
 	color.New(color.Faint).Print("  ")
 	color.New(color.Bold, color.FgWhite).Print("Zombie Inspector")
 	color.New(color.Faint).Printf("%-*s│\n", 33, "")
